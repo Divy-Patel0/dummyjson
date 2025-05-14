@@ -34,7 +34,7 @@ function Quotes() {
         <header style={{display: "flex", justifyContent: "flex-end", padding: "10px" }}>
             <nav>
                 <label htmlFor="limit">Limit: </label>
-                <select name="limit" id="limit" value={pageitem} onChange={(e)=>setPageitem(Number(e.target.value))}>
+                <select name="limit" id="limit" value={pageitem} onChange={(e)=>{setPageitem(Number(e.target.value)); setcurrentPage(1); setSkip(0)}}>
                 <option value="10" >10</option>
                 <option value="25">25</option>
                 <option value="50">50</option>

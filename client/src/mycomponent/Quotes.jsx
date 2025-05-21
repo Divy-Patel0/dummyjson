@@ -31,7 +31,7 @@ function Quotes() {
     const visiblePages = Array.from({ length: end - start + 1 }, (_, i) => start + i);
     return (
         <>
-            <header>
+            <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop:"0px"}}>
                 <h2>Quotes</h2>
                 <nav>
                     <label htmlFor="limit">Limit: </label>

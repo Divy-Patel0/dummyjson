@@ -1,8 +1,8 @@
 .container{
    display: flex;
-   margin-top:1px ;
+   margin-top:20px ;
    flex-direction: column;
-  place-items: center;
+   place-items: center;
 }
 input{
   border-radius: 15px;

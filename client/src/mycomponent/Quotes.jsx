@@ -14,7 +14,7 @@ function Quotes() {
     }, [])
 
     useEffect(() => {
-        fetch(`https://dummyjson.com/quotes?limit=${pageitem}&skip=${skip}`)
+        fetch(`https://dummyjson.com/quotes?limit=${limit}&skip=${skip}`)
             .then(res => res.json())
             .then(data => setQuotes([...data.quotes]))
 
@@ -31,12 +31,13 @@ function Quotes() {
     const visiblePages = Array.from({ length: end - start + 1 }, (_, i) => start + i);
     return (
         <>
-            <header style={{ display: "flex", justifyContent: "flex-end", padding: "10px" }}>
+            <header>
+                <h2>Quotes</h2>
                 <nav>
                     <label htmlFor="limit">Limit: </label>
                     <select
                         name="limit"
-                        id="limit" value={pageitem} 
+                        id="limit" value={limit} 
                         onChange={(e) => 
                         { 
                             setLimit(Number(e.target.value)); 

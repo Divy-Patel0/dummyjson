@@ -1,11 +1,12 @@
 import React from 'react'
 
 function Pagination({ currentPage, setcurrentPage, setSkip, limit, pagecount }) {
+
   const handlePage = (pageNumber) => {
     setSkip((pageNumber - 1) * limit)
     setcurrentPage(pageNumber)
+    window.scrollTo({ top: 120, behavior: 'smooth' });
   }
-
 
   const start = Math.floor((currentPage - 1) / 10 * 10 + 1)
   const end = Math.min((start + 9), pagecount)
@@ -17,7 +18,7 @@ function Pagination({ currentPage, setcurrentPage, setSkip, limit, pagecount }) 
         {start > 1 && (<button onClick={() => handlePage(start > 10 ? start - 10 : start - 1)}>prev</button>)}
 
         {visiblePages.map((page) =>
-        (<button key={page} onClick={() => handlePage(page)}>
+        (<button  className={page === currentPage ? 'active' : ''} key={page} onClick={() => handlePage(page)}>
           {page}</button>
         ))}
 

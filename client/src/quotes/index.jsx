@@ -25,8 +25,8 @@ function Quotes() {
     const pagecount = Math.ceil(total / limit);
     return (
         <>
-            <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop:"0px"}}>
-                <h2>Quotes</h2>
+            <header>
+                <h1>Quotes</h1>
                 <nav>
                     <label htmlFor="limit">Limit: </label>
                     <select

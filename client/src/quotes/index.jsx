@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import Pagination from './components/Pagination';
+import Quote from './components/Quote';
 
 function Quotes() {
     const [quotes, setQuotes] = useState([{}]);
@@ -20,15 +22,7 @@ function Quotes() {
 
     }, [skip, limit])
 
-    const handlePage = (pageNumber) => {
-        setSkip((pageNumber - 1) * limit)
-        setcurrentPage(pageNumber)
-    }
     const pagecount = Math.ceil(total / limit);
-
-    const start = Math.floor((currentPage - 1) / 10 * 10 + 1)
-    const end = Math.min((start + 9), pagecount)
-    const visiblePages = Array.from({ length: end - start + 1 }, (_, i) => start + i);
     return (
         <>
             <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop:"0px"}}>
@@ -51,21 +45,14 @@ function Quotes() {
             </header>
             <div className='container'>
 
-                <div>
-                    <ul>
-                        {quotes.map(quote => <li key={quote.id}>{quote.id}. {quote.quote}</li>)}
-                    </ul>
-                </div>
-                <div className='button-array'>
-                    {start > 1 && (<button onClick={() => handlePage(start > 10 ? start - 10 : start - 1)}>prev</button>)}
-
-                    {visiblePages.map((page) =>
-                    (<button key={page} onClick={() => handlePage(page)}>
-                        {page}</button>
-                    ))}
-
-                    {end < pagecount && (<button onClick={() => handlePage(end + 1)}>next</button>)}
-                </div>
+                <Quote quotes={quotes}/>
+                <Pagination 
+                    currentPage = {currentPage}
+                    setcurrentPage = {setcurrentPage}
+                    limit = {limit}
+                    pagecount = {pagecount}
+                    setSkip = {setSkip}
+                />
 
             </div>
         </>

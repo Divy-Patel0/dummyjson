@@ -29,35 +29,39 @@ function App() {
   const pagecount = Math.ceil(total / limit);
   return (
     <>
-      <header>
-        <h1>Quotes</h1>
-        <nav>
-          <label htmlFor="limit">Limit: </label>
-          <select
-            name="limit"
-            id="limit" value={limit}
-            onChange={(e) => {
-              setLimit(Number(e.target.value));
-              setcurrentPage(1);
-              setSkip(0)
-            }}>
-            <option value="10" >10</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
-          </select>
-        </nav>
-      </header>
-      <div className='container'>
+      <div className="quote-layout">
 
-        <Quote quotes={quotes} />
-        <Pagination
-          currentPage={currentPage}
-          setcurrentPage={setcurrentPage}
-          limit={limit}
-          pagecount={pagecount}
-          setSkip={setSkip}
-        />
+        <header className='header'>
+          <h1>Quotes</h1>
+          <nav>
+            <label htmlFor="limit">Limit: </label>
+            <select
+              name="limit"
+              id="limit" value={limit}
+              onChange={(e) => {
+                setLimit(Number(e.target.value));
+                setcurrentPage(1);
+                setSkip(0)
+              }}>
+              <option value="10" >10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+            </select>
+          </nav>
+        </header>
+        <div className='quotes-container'>
 
+          <Quote quotes={quotes} />
+        </div>
+        <div className='pagination-fixed'>
+          <Pagination
+            currentPage={currentPage}
+            setcurrentPage={setcurrentPage}
+            limit={limit}
+            pagecount={pagecount}
+            setSkip={setSkip}
+          />
+        </div>
       </div>
     </>
   )

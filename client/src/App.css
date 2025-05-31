@@ -184,7 +184,7 @@ html, body {
     padding: 10px;
     /* height: 100vh; adjust to allow space for pagination */
     height: 65vh;
-    padding-bottom: 70px;
+    padding-bottom: 85px;
     overflow-y: auto;
   }
 }

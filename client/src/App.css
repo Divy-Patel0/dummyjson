@@ -31,9 +31,9 @@ body {
   overflow-y: auto;
   padding: 12px;
   background-color: #fafafa;
+  border: 2px solid red;
   border-radius: 8px;
   box-sizing: border-box;
-  border-color: red;
   min-height: 0; /* Required for flex scroll area */
 }
 

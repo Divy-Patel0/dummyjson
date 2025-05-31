@@ -157,7 +157,7 @@ html, body {
 
   .quote-container {
     padding: 10px;
-    height: 60vh; /* adjust to allow space for pagination */
+    height: 75vh; /* adjust to allow space for pagination */
     overflow-y: auto;
   }
 }

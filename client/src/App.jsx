@@ -29,7 +29,7 @@ function App() {
   const pagecount = Math.ceil(total / limit);
   return (
     <>
-      <div className="quote-layout">
+      <div className="quotes-layout">
 
         <header className='header'>
           <h1>Quotes</h1>
@@ -49,7 +49,7 @@ function App() {
             </select>
           </nav>
         </header>
-        <div className='quotes-container'>
+        <div className='quote-container'>
 
           <Quote quotes={quotes} />
         </div>

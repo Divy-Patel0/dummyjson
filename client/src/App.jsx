@@ -7,7 +7,7 @@ import Limit from './components/Limit';
 
 function App() {
 
-
+  const [isLoading, setIsLoading] = useState(false)
   const [quotes, setQuotes] = useState([{}]);
   const [total, setTotal] = useState(0);
   const [skip, setSkip] = useState(0);
@@ -24,10 +24,14 @@ function App() {
   }, [])
 
   useEffect(() => {
+    setIsLoading(true);
     fetch(`https://dummyjson.com/quotes?limit=${limit}&skip=${skip}`)
       .then(res => res.json())
-      .then(data => setQuotes([...data.quotes]))
-
+      .then(data => {
+        setQuotes([...data.quotes])
+        setIsLoading(false);
+      })
+      .catch(() => setIsLoading(false));
   }, [skip, limit])
 
   const pagecount = Math.ceil(total / limit);
@@ -38,19 +42,23 @@ function App() {
         <header className='header'>
           <h1>Quotes</h1>
           <nav>
-            <Limit 
-            limit={limit}
-            setLimit={setLimit}
-            setSkip={setSkip}
-            setcurrentPage={setcurrentPage}
-            quoteContainerRef={quoteContainerRef}
+            <Limit
+              limit={limit}
+              setLimit={setLimit}
+              setSkip={setSkip}
+              setcurrentPage={setcurrentPage}
+              quoteContainerRef={quoteContainerRef}
             />
           </nav>
         </header>
-        <div className='quote-container' ref={quoteContainerRef}>
-
-          <Quote quotes={quotes} />
+        <div className='quote-container'>
+          {isLoading ? (
+            <div className="loader">Loading...</div>
+          ) : (
+            <Quote quotes={quotes} />
+          )}
         </div>
+
         <div className='pagination-fixed'>
           <Pagination
             currentPage={currentPage}

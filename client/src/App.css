@@ -1,98 +1,163 @@
-html,
-body {
-  height: 100%;
+/* Global Reset */
+html, body {
   margin: 0;
-  overflow: hidden;
-  font-family: sans-serif;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  overflow: hidden; /* Prevent full-page scrolling */
 }
 
-/* Main layout */
+/* Layout Container */
 .quotes-layout {
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
 
-/* Header */
+/* Header Styling */
 .header {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 12px;
-  font-size: 14px;
-  background-color: #f0f0f0;
-  border-bottom: 1px solid #ccc;
+  padding: 10px 16px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+  height: 60px;
+  flex-shrink: 0;
 }
 
-/* Scrollable container for quotes */
+.header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.header nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Pagination Fixed Footer */
+.pagination-fixed {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* allow wrapping on small screens */
+  gap: 8px;
+  padding: 10px;
+  background: #f8f8f8;
+  border-top: 1px solid #ccc;
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+}
+
+/* Scrollable Container for Quotes */
 .quote-container {
   flex: 1;
   overflow-y: auto;
-  padding: 12px;
+  padding: 10px 16px;
   background-color: #fafafa;
-  border: 2px solid red;
-  border-radius: 8px;
   box-sizing: border-box;
-  min-height: 0; /* Required for flex scroll area */
+  min-height: 0; /* Critical for flex scroll */
 }
 
-
-/* Quote list items */
+/* Quote List */
 .quote-list {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
+/* Individual Quote */
 .quote-list li {
-  margin-bottom: 12px;
-  padding: 10px;
-  font-size: 14px;
+  padding: 12px;
   background-color: #fff;
+  border-radius: 8px;
   border: 1px solid #ddd;
-  border-radius: 6px;
+  line-height: 1.5;
 }
 
-/* Footer pagination */
-.pagination-fixed {
-  width: 100%;
-  background-color: #f9f9f9;
-  border-top: 1px solid #ccc;
-  padding: 10px 0;
-  position: sticky;
-  bottom: 0;
-  box-sizing: border-box;
+/* Quote Text & Author */
+.quote-text {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 4px;
 }
+
+.quote-author {
+  font-size: 0.875rem;
+  color: #555;
+  font-style: italic;
+}
+
+/* Responsive Fixes */
+@media screen and (max-width: 400px) {
+  .header h1 {
+    font-size: 1.2rem;
+  }
+
+  .quote-list li {
+    padding: 10px;
+  }
+
+  .quote-text {
+    font-size: 0.95rem;
+  }
+
+  .quote-author {
+    font-size: 0.8rem;
+  }
+}
+
+
 
 .button-array {
   display: flex;
-  justify-content: center ;
-  align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
-  padding: 10px 0;
-  text-align: center;
+  justify-content: center;
+  gap: 6px;
 }
-
 .button-array button {
-  padding: 6px 10px;
-  font-size: 13px;
-  white-space: nowrap;
-  border-radius: 5px;
-  background: white;
-  border: 1px solid #ccc;
+  padding: 6px 12px;
+  border: none;
+  background-color: #eee;
+  border-radius: 4px;
   cursor: pointer;
+  font-size: 0.9rem;
+  min-width: 36px;
 }
 
 .button-array button.active {
-  background-color: #6c63ff;
+  background-color: #007bff;
   color: white;
   font-weight: bold;
 }
 
-select {
-  font-size: 14px;
-  padding: 4px;
-  border-radius: 4px;
+.button-array button.active {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border-color: #007bff;
+}
+
+
+@media (max-width: 480px) {
+  .quotes-layout {
+    padding: 8px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .quote-container {
+    padding: 10px;
+    height: 68vh; /* adjust to allow space for pagination */
+    overflow-y: auto;
+  }
 }

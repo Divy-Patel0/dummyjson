@@ -1,5 +1,3 @@
-import './Quote.css';
-
 function Quote({ quotes }) {
     return (
         <>

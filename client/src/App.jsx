@@ -1,8 +1,9 @@
 import './App.css'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Pagination from './components/Pagination';
 import Quote from './components/Quote';
+import Limit from './components/Limit';
 
 function App() {
 
@@ -12,6 +13,9 @@ function App() {
   const [skip, setSkip] = useState(0);
   const [currentPage, setcurrentPage] = useState(1)
   const [limit, setLimit] = useState(10)
+
+
+  const quoteContainerRef = useRef(null);
 
   useEffect(() => {
     fetch('https://dummyjson.com/quotes')
@@ -34,22 +38,16 @@ function App() {
         <header className='header'>
           <h1>Quotes</h1>
           <nav>
-            <label htmlFor="limit">Limit: </label>
-            <select
-              name="limit"
-              id="limit" value={limit}
-              onChange={(e) => {
-                setLimit(Number(e.target.value));
-                setcurrentPage(1);
-                setSkip(0)
-              }}>
-              <option value="10" >10</option>
-              <option value="25">25</option>
-              <option value="50">50</option>
-            </select>
+            <Limit 
+            limit={limit}
+            setLimit={setLimit}
+            setSkip={setSkip}
+            setcurrentPage={setcurrentPage}
+            quoteContainerRef={quoteContainerRef}
+            />
           </nav>
         </header>
-        <div className='quote-container'>
+        <div className='quote-container' ref={quoteContainerRef}>
 
           <Quote quotes={quotes} />
         </div>
@@ -60,6 +58,7 @@ function App() {
             limit={limit}
             pagecount={pagecount}
             setSkip={setSkip}
+            quoteContainerRef={quoteContainerRef}
           />
         </div>
       </div>
